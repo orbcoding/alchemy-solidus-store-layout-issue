@@ -6,3 +6,6 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 Alchemy::Seeder.seed!
+Spree::Core::Engine.load_seed
+Spree::Auth::Engine.load_seed
+SolidusStripe::Engine.load_seed
