@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="<%= @page.language_code %>">
+<html lang="<%= @page&.language_code || I18n.locale %>">
   <head>
     <%= render "alchemy/pages/meta_data" %>
     <%= csrf_meta_tags %>
@@ -7,10 +7,34 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbo-track': 'reload' %>
+
+    <% unless @page %>
+    <meta charset="utf-8">
+    <title><%= title %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%== meta_data_tags %>
+    <%= canonical_tag(current_store.url) %>
+    <%= csrf_meta_tags %>
+    <% end %>
+
+    <%= javascript_include_tag 'solidus_starter_frontend' %>
+    <%= stylesheet_link_tag 'solidus_starter_frontend', media: 'screen' %>
+
+    <%= javascript_importmap_tags %>
+
+    <%= favicon_link_tag 'favicon.ico' %>
+    <%= yield :head %>
   </head>
 
-  <body>
+  <body class="<%= body_class %>" id="<%= @body_id || 'default' %>" data-turbo="false">
+    <%= render 'layouts/header', taxons: @taxons, taxon: @taxon %>
+    <%= flash_messages %>
+    <%= render BreadcrumbsComponent.new(@taxon) %>
+    <main>
     <%= yield %>
+    </main>
+    <%= render 'layouts/footer' %>
+
     <%= render "alchemy/edit_mode" %>
   </body>
 </html>
