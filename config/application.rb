@@ -11,6 +11,12 @@ module Src
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
+    config.i18n.available_locales = [ :it ]
+    config.i18n.default_locale = :it
+
+    config.before_initialize do
+      Alchemy::I18n.available_locales = [:it]
+    end
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
