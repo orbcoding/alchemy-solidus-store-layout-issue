@@ -1,0 +1,43 @@
+version: "3.5"
+
+services:
+  db:
+    container_name: ${ORB_APP_NAME}_${ORB_CURRENT_ENV}_db
+    image: postgres:16rc1-alpine
+    volumes:
+      - ../${ORB_CURRENT_ENV}.db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: $ORB_DATABASE_USERNAME
+      POSTGRES_PASSWORD: $ORB_DATABASE_PASSWORD
+    networks:
+      default:
+        aliases:
+          - ${ORB_APP_NAME}_${ORB_CURRENT_ENV}_db
+
+  web:
+    expose:
+      - "3000"
+    ports:
+      - 3000:3000
+    container_name: ${ORB_APP_NAME}_${ORB_CURRENT_ENV}_web
+    command: ./_docker/startup-${ORB_CURRENT_ENV}.sh
+    user: ${ORB_CURRENT_ID}:${ORB_CURRENT_GID}
+    working_dir: /src
+    build: _docker
+    image: orbcoding/${ORB_APP_NAME}_${ORB_CURRENT_ENV}
+    volumes:
+      - .:/src:cached
+      - ./_docker/data/home:/home/docker
+      - /etc/passwd:/etc/passwd
+    environment:
+      RAILS_ENV: $ORB_CURRENT_ENV
+      RUBYOPT: '-W:no-deprecated -W:no-experimental'
+      HOME: /src/_docker/data/home
+      BUNDLE_PATH: /src/_docker/data/bundle
+      ORB_DATABASE_USERNAME: $ORB_DATABASE_USERNAME
+      ORB_DATABASE_PASSWORD: $ORB_DATABASE_PASSWORD
+      ORB_APP_NAME: $ORB_APP_NAME
+    networks:
+      default:
+        aliases:
+          - ${ORB_APP_NAME}_${ORB_CURRENT_ENV}_web
