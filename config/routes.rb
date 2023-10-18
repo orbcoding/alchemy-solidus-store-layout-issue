@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   # Let AlchemyCMS handle the root route
+  root to: 'alchemy/pages#index'
+  # Let AlchemyCMS handle the root route
   # root to: 'alchemy/pages#index'
   mount SolidusStripe::Engine, at: '/solidus_stripe'
   # root to: 'home#index'
@@ -73,6 +75,8 @@ Rails.application.routes.draw do
   #
   # We ask that you don't use the :as option here, as Solidus relies on it being the default of "spree"
   mount Spree::Core::Engine, at: '/'
+  mount Alchemy::Engine, at: '/'
+
   # mount Alchemy::Engine, at: '/'
 
   # mount Alchemy::Engine => '/'
