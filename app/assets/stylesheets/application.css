@@ -13,4 +13,5 @@
  * OFF require_tree .
  *= require_self
  * OFF require_tree ./alchemy/elements
+ *= require_tree ./alchemy/elements
  */
