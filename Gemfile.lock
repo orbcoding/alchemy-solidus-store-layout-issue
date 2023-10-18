@@ -118,6 +118,9 @@ GEM
       sprockets (>= 3.0, < 5)
       turbo-rails (>= 1.4)
       view_component (~> 3.0)
+    alchemy_i18n (4.0.1)
+      alchemy_cms (>= 7.0.4, < 8)
+      rails-i18n
     ast (2.4.2)
     autoprefixer-rails (10.4.15.0)
       execjs (~> 2)
@@ -243,6 +246,9 @@ GEM
       activerecord
       kaminari-core (= 1.2.2)
     kaminari-core (1.2.2)
+    kaminari-i18n (0.5.0)
+      kaminari
+      rails
     kt-paperclip (7.2.1)
       activemodel (>= 4.2.0)
       activesupport (>= 4.2.0)
@@ -332,6 +338,9 @@ GEM
     rails-html-sanitizer (1.6.0)
       loofah (~> 2.21)
       nokogiri (~> 1.14)
+    rails-i18n (7.0.8)
+      i18n (>= 0.7, < 2)
+      railties (>= 6.0.0, < 8)
     railties (7.0.8)
       actionpack (= 7.0.8)
       activesupport (= 7.0.8)
@@ -473,6 +482,9 @@ GEM
       ransack (~> 2.0)
       sprockets-rails
       state_machines-activerecord (~> 0.6)
+    solidus_i18n (2.2.0)
+      solidus_core (>= 1.1, < 5)
+      solidus_support (~> 0.4)
     solidus_stripe (5.0.1)
       solidus_core (>= 3.2, < 5)
       solidus_support (~> 0.8)
@@ -533,6 +545,7 @@ PLATFORMS
 
 DEPENDENCIES
   alchemy-solidus (~> 6.0)
+  alchemy_i18n
   bootsnap
   canonical-rails
   capybara
@@ -544,6 +557,7 @@ DEPENDENCIES
   ffaker (~> 2.13)
   importmap-rails
   jbuilder
+  kaminari-i18n
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.8)
@@ -557,6 +571,7 @@ DEPENDENCIES
   rubocop-rspec (~> 2.0)
   selenium-webdriver
   solidus_auth_devise (~> 2.5)
+  solidus_i18n
   solidus_stripe (~> 5.a)
   solidus_support
   sprockets-rails

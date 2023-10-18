@@ -100,3 +100,7 @@ group :development, :test do
 end
 
 gem "solidus_stripe", "~> 5.a"
+
+gem "alchemy_i18n"
+gem "solidus_i18n"
+gem "kaminari-i18n"
